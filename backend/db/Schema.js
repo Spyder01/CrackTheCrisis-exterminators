@@ -16,6 +16,14 @@ const Schema = mongoose.Schema({
     password: {
         type: String,
         required: true
+    },
+    class: {
+        type: String,
+        required: false
+    },
+    permit: {
+        type: String,
+        required: false
     }
 })
 

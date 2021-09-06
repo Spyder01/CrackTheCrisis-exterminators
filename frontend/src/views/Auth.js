@@ -4,7 +4,7 @@ import {useHistory} from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import ImageGrid from '../components/ImageGrid'
 import { makeStyles } from '@material-ui/core/styles';
-import API from '../utils/API'
+import API from '../utils/serverURI'
 
 
 const useStyles = makeStyles((theme) => ({
@@ -72,7 +72,7 @@ const Auth = ()=>{
             headers: { 'Content-Type': 'application/json' }
           })
         if(res.status===201) {
-          History.push('/home')
+          History.push('/login')
         }
         else {
           setCaption('Email ID already exists');

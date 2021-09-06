@@ -4,6 +4,7 @@ import {useHistory} from 'react-router-dom';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import ImageGrid from '../components/ImageGrid'
 import { makeStyles } from '@material-ui/core/styles';
+import API from '../utils/serverURI';
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -39,6 +40,27 @@ const Login = ()=>{
     const History = useHistory ();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
+        const body = {
+          email: email,
+          password: password
+        }
+
+        const res = await fetch(`${API}/auth/login`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(body),
+
+        })
+        const {status} = await res;
+        if(status === 201) {
+            const fff = await res.user
+            console.log(fff)
+            History.push('/home')
+        }
+
+    }
 
     return (
         <Grid container component="main" className={classes.root}>
@@ -52,7 +74,7 @@ const Login = ()=>{
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <form className={classes.form} noValidate>
+          <form className={classes.form} noValidate onSubmit={handleSubmit}>
             <TextField
               variant="outlined"
               margin="normal"

@@ -1,7 +1,7 @@
 import Auth from '../views/Auth'
 import Login from '../views/Login'
 import Home from '../views/Home'
-
+import Jobs from '../views/Jobs'
 const routes = [
     { 
         path: '/', 
@@ -16,7 +16,12 @@ const routes = [
     {
         path:'/home',
         component:Home,
-        exact:true
+        exact: true
+    },
+    {
+        path: '/jobs',
+        component: Jobs,
+        exact: true
     }
 
 ]
