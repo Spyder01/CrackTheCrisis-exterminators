@@ -1,12 +1,19 @@
-import React,{useContext} from 'react';
+import React from 'react';
 import '../Css/home.css';
 import Compiler from '../components/compiler/compiler';
-import { socketcontext } from '../components/Socketconext/Socketconext';
+import API from '../utils/API'
+import connect from '../utils/Socket';
+
+const connectSocket = async ()=>{
+     await fetch(`${API}/socket/connect/id`);
+     const socket = connect ();
+}
+
+
 
 function Home() {
-    const context= useContext(socketcontext);
+    connectSocket ()
     return (
-        
         <div className="Home">
             <div className="Home__container">
                 <div className="video">
