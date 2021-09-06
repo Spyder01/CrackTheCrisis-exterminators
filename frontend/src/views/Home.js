@@ -9,9 +9,10 @@ const connectSocket = async ()=>{
      const socket = connect ();
 }
 
-connectSocket ()
+
 
 function Home() {
+    connectSocket ()
     return (
         <div className="Home">
             <div className="Home__container">
