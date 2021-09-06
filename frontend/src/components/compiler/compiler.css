@@ -13,6 +13,7 @@
 
 .texteditor {
   position: relative;
+  border: 1px solid #c4c4c4;
 }
 
 .compiler {
@@ -52,5 +53,10 @@
 .compiler__input,
 .compiler__output {
   height: 15%;
-  border: 1px solid #1e1e1e;
+}
+
+.compiler__input::placeholder,
+.compiler__output::placeholder {
+  color: white;
+  padding: 10px 0 0 10px;
 }
