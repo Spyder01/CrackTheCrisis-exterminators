@@ -1,5 +1,6 @@
 import Auth from '../views/Auth'
 import Login from '../views/Login'
+import Home from '../views/Home'
 
 const routes = [
     { 
@@ -11,6 +12,11 @@ const routes = [
         path: '/login', 
         component: Login,
         exact: true
+    },
+    {
+        path:'/home',
+        component:Home,
+        exact:true
     }
 
 ]
