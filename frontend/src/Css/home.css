@@ -1,0 +1,10 @@
+.Home__container {
+  display: flex;
+  height: 80vh;
+  background-color: black;
+  width: 100vw;
+}
+
+.Home__container > div {
+  width: 100%;
+}
