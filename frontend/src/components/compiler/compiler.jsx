@@ -13,8 +13,8 @@ function compiler() {
         Code, Compile, Run and Debug online from anywhere in world.
         
         *******************************************************************************/</textarea>
-        <textarea id='compiler__input' className='compiler__input' ></textarea>
-        <textarea id='compiler__output' className='compiler__output'></textarea>
+        <textarea id='compiler__input' className='compiler__input' placeholder="Input" ></textarea>
+        <textarea id='compiler__output' className='compiler__output' placeholder="Output"></textarea>
         </>
     )
 }

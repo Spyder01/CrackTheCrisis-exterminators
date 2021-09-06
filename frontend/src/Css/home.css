@@ -8,3 +8,13 @@
 .Home__container > div {
   width: 100%;
 }
+
+@media screen and (max-width: 768px) {
+  .Home__container {
+    flex-direction: column;
+  }
+
+  .Home__container > div {
+    min-height: 100vh;
+  }
+}
