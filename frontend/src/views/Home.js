@@ -1,9 +1,15 @@
 import React from 'react';
 import '../Css/home.css';
 import Compiler from '../components/compiler/compiler';
+import API from '../utils/API'
 import connect from '../utils/Socket';
 
-const socket=connect();
+const connectSocket = async ()=>{
+     await fetch(`${API}/socket/connect/id`);
+     const socket = connect ();
+}
+
+connectSocket ()
 
 function Home() {
     return (

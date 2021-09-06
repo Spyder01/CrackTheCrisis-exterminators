@@ -1,12 +1,13 @@
 const express = require('express');
-const socket = require('socket.io');
+const {Server} = require('socket.io');
+const cors = require('cors');
 
 
 const app = express.Router ();
+app.use(cors())
 
 app.all('/connect/:id', (req, res) => {
-    const io = socket(res.socket.server);
-
+    const io = new Server(res.socket.server, { cors: { origin: '*' } });
     io.on('connection', socket=>{
         console.log('Connection made')
     })
