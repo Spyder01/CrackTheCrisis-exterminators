@@ -5,11 +5,15 @@ const BodyParser = require('body-parser');
 
 
 
+
 dotenv.config();
 
 const app = express ();
+const server=require('http').createServer(app);
 app.use(BodyParser.json())
 const PORT = process.env.PORT || 5000;
+
+
 
 app.get('/', (req, res)=>{
     res.send("<h1>Hello, World!!</h1>")
