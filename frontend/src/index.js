@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {ContextProvider} from '../src/components/Socketconext';
+import {ContextProvider} from '../src/components/Socketconext/Socketconext';
 
 ReactDOM.render(
   <React.StrictMode>

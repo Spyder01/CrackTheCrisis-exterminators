@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useContext} from 'react';
 import '../Css/home.css';
 import Compiler from '../components/compiler/compiler';
 import { socketcontext } from '../components/Socketconext/Socketconext';
