@@ -1,4 +1,5 @@
 import Auth from '../views/Auth'
+import Login from '../views/Login'
 
 const routes = [
     { 
@@ -6,6 +7,11 @@ const routes = [
         component: Auth,
         exact: true
     },
+    {
+        path: '/login', 
+        component: Login,
+        exact: true
+    }
 
 ]
 
