@@ -7,6 +7,7 @@ import connect from '../utils/Socket';
 const connectSocket = async ()=>{
      await fetch(`${API}/socket/connect/id`);
      const socket = connect ();
+     socket.emit('hi');
 }
 
 

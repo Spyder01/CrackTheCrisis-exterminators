@@ -38,6 +38,10 @@ const useStyles = makeStyles((theme) => ({
         '&:hover':{
           color:'white'
         }
+    },
+    caption: {
+      color: "red",
+      fontSize: "15px"
     }
     
   }));
@@ -51,6 +55,7 @@ const Auth = ()=>{
    const [lastName, setLastName] = useState('');
    const [email, setEmail] = useState('');
    const [password, setPassword] = useState('');
+   const [caption, setCaption] = useState('');
 
    const onSubmit = async (e)=>{
           console.log('auth');
@@ -61,11 +66,17 @@ const Auth = ()=>{
             email: email,
             password: password,
           }
-          await fetch(`${API}/auth/sign-up`, {
+         const res = await fetch(`${API}/auth/sign-up`, {
             method: 'POST',
             body: JSON.stringify(response),
             headers: { 'Content-Type': 'application/json' }
           })
+        if(res.status===201) {
+          History.push('/home')
+        }
+        else {
+          setCaption('Email ID already exists');
+        }
    }
 
     return (
@@ -82,8 +93,12 @@ const Auth = ()=>{
           Sign up
         </Typography>
         <form className={classes.form} onSubmit={onSubmit}>
+        <Typography caption className={classes.caption}>
+                {caption}
+          </Typography>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
+
               <TextField
                 autoComplete="fname"
                 name="firstName"
