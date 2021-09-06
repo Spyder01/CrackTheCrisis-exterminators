@@ -1,12 +1,12 @@
 import React from 'react';
 import '../Css/home.css';
 import Compiler from '../components/compiler/compiler';
-import connect from '../utils/Socket';
-
-const socket=connect();
+import { socketcontext } from '../components/Socketconext/Socketconext';
 
 function Home() {
+    const context= useContext(socketcontext);
     return (
+        
         <div className="Home">
             <div className="Home__container">
                 <div className="video">
