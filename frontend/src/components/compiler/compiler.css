@@ -27,8 +27,7 @@
   padding: 20px;
 }
 
-.texteditor::after {
-  content: "▷ Run";
+.run {
   display: block;
   position: absolute;
   width: 100px;

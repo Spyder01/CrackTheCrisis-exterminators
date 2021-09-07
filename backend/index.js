@@ -5,7 +5,9 @@ const BodyParser = require('body-parser');
 const cors = require('cors');
 const SignUp = require('./routes/auth/SignUp')
 const Socket = require('./routes/socket/sockets')
+const compile=require('./routes/comiler')
 
+compile();
 
 
 dotenv.config();
@@ -22,13 +24,17 @@ app.get('/', (req, res)=>{
 app.use('/auth', SignUp)
 app.use('/socket', Socket);
 
+app.listen(PORT, ()=>{
+    console.log("Server Running...")
+})
 
-const DataBaseAuth = `mongodb+srv://Suhan:${process.env.MONGO_PASSWORD}@exterminators.7pup1.mongodb.net/Exterminators?retryWrites=true&w=majority`
+
+/*const DataBaseAuth = `mongodb+srv://Suhan:${process.env.MONGO_PASSWORD}@exterminators.7pup1.mongodb.net/Exterminators?retryWrites=true&w=majority`
 mongoose.connect(DataBaseAuth, {useNewUrlParser: true, useUnifiedTopology: true}).then((res) => {
     app.listen(PORT, ()=>{
         console.log("Server Running...")
     })
-}).catch((err)=>console.error(err));
+}).catch((err)=>console.error(err));*/
 
 
 

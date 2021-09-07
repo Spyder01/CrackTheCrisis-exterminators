@@ -1,11 +1,12 @@
 import { createContext,useState,useEffect,useRef } from "react";
 import connect from '../../utils/Socket';
+import { io } from "socket.io-client";
 import peer from 'simple-peer';
 
 const socketcontext=createContext();
-const socket=connect();
+const socketconnection=io('http://localhost/5000/socket/connect/1234');
 
-const ContextProvider =(({children})=>{
+const ContextProvider =({children})=>{
 
     const [stream,setStream]=useState(null);
     const [id,setId]=useState('');
@@ -15,12 +16,13 @@ const ContextProvider =(({children})=>{
     useEffect(()=>{
         navigator.mediaDevices.getUserMedia({video:true,audio:true})
         .then((currentstream) => {
-            myvideo.current.srcObject=currentstream;
-        })
+            setStream(currentstream);
+            /*myvideo.current.srcObject=currentstream;*/
+        });
         
-        socket.on('me',data=>{
+        socketconnection.on('me',data=>{
             setId(data);
-        })
+        });
 
     },[]);
 
@@ -46,9 +48,9 @@ const ContextProvider =(({children})=>{
             leavecall,
             answercall,
         }}>
-            {children};
+            {children}
         </socketcontext.Provider>
     )
-})
+}
 
 export {socketcontext,ContextProvider};
