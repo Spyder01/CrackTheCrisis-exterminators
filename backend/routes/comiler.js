@@ -1,38 +1,36 @@
 var axios = require('axios');
 var FormData = require('form-data');
 
-const compile=()=>{
-    var data = new FormData();
-const cod = `#include <iostream>
-using namespace std;
+const compile=(lang,code,input,socket)=>{
 
-int main() {
-    int numbers[5] = {7, 5, 6, 12, 35};
+var data = new FormData();
+var cod,language,inputvalue;
+if(code!=undefined){
+    cod=code;
+}else{
+    cod=' ';
+}
 
-    cout << "The numbers are: ";
+if(lang!=undefined){
+    language=lang;
+}else{
+    language='C';
+}
 
-    //  Printing array elements
-    // using range based for loop
-    for (const int &n : numbers) {
-        cout << n << "  ";
-    }
+if(input!=undefined){
+    inputvalue=input;
+}else{
+    inputvalue=' ';
+}
 
+console.log(cod,language,inputvalue);
 
-    cout << "The numbers are: ";
-
-    //  Printing array elements
-    // using traditional for loop
-    for (int i = 0; i < 5; ++i) {
-        cout << numbers[i] << "  ";
-    }
-
-    return 0;
-}`;
-data.append('lang', 'Cpp');
+data.append('lang', language);
 data.append('code', cod);
-
-data.append('input', '');
+data.append('input', inputvalue);
 data.append('save', 'false');
+
+
 
 var config = {
     method: 'post',
@@ -60,15 +58,19 @@ axios(config)
                 data: data2
             };
 
-            axios(config2)
+            var ans=axios(config2)
                 .then(function (response) {
-                    console.log(response.data.output);
+                    if(response.data.output!=undefined){
+                    socket.emit('data',response.data.output);
+                    }else{
+                        socket.emit('data',response.data.cmpError);
+                    }
                 })
                 .catch(function (error) {
                     console.log(error);
                 });
+           
         }, 5000);
-
     })
     .catch(function (error) {
         console.log(error);
