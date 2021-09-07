@@ -10,11 +10,11 @@ app.post('/login', async (req, res)=>{
     if (user) {
         try {
             if( await bcrypt.compare(password, user.password))  {
-                res.sendStatus(201);
-                res.json({
+                res.status(201).json({
                     details: user,
                     msg: "Success"
-                })
+                });
+            
             }
             else {
                 res.status(501).send("Incorrect Password")

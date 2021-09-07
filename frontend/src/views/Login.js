@@ -55,7 +55,8 @@ const Login = ()=>{
         })
         const {status} = await res;
         if(status === 201) {
-            const fff = await res.user
+           const fff = await res.json()
+            
             console.log(fff)
             History.push('/home')
         }
