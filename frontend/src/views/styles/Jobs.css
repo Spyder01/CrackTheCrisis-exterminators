@@ -1,0 +1,16 @@
+.JobsContainer {
+  padding-right: 5vw;
+  padding-left: 5vw;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+@media (min-width: 1400px) {
+  .JobsContainer {
+    padding-right: 8vw;
+    padding-left: 8vw;
+  }
+}
