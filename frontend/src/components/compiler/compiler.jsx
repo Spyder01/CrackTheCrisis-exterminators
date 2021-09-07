@@ -18,6 +18,8 @@ function Compiler(props) {
         props.sock.emit('message',e.target.value);
     }
 
+   
+
     const updateinput=(e)=>{
         setInput(e.target.value);
         props.sock.emit('input',e.target.value);
@@ -26,13 +28,8 @@ function Compiler(props) {
     const updateoutput=(e)=>{
         setOutput(e.target.value);
         props.sock.emit('output',e.target.value);
-        
     }
 
-    const updateLanguage=(e)=>{
-        setLanguage(e.target.value);
-        props.sock.emit('language',e.target.value);
-    }
     props.sock.on('message',(data)=>{
         setCode(data);
     })
@@ -45,10 +42,6 @@ function Compiler(props) {
         setOutput(data);
     })
 
-    props.sock.on('language',data=>{
-        setLanguage(data);
-    })
-
     const senddata=(e)=>{
         setOutput('');
         const lang=language;
@@ -58,7 +51,7 @@ function Compiler(props) {
         props.sock.emit('data',{lang,code,input});
         props.sock.on('data',data=>{
             setOutput(data);
-            props.sock.emit('output',e.target.value);
+            props.sock.emit('output',data);
         })
     }
 
@@ -74,10 +67,10 @@ function Compiler(props) {
         Code, Compile, Run and Debug online from anywhere in world.
         
         *******************************************************************************/</textarea>
-        <textarea id='compiler__input' className='compiler__input' placeholder="Input" onChange={(e)=>updateinput(e)} value={input} ></textarea>
+        <textarea id='compiler__input' className='compiler__input' placeholder="Input" value={input} onChange={(e)=>updateinput(e)} ></textarea>
         <textarea id='compiler__output' className='compiler__output' placeholder="Output" value={output} onChange={(e)=>updateoutput(e)}></textarea>
         <button onClick={(e)=>senddata(e)} className='run'>▷ Run</button>
-        <select val={language} onChange={(e)=>{updateLanguage(e)}} id='language'>
+        <select val={language} onChange={(e)=>{setLanguage(e.target.value)}} id='language'>
             <option val="C">C</option>
             <option val="Cpp">Cpp</option>
             <option val="Java">Java</option>
