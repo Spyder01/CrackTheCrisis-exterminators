@@ -41,4 +41,34 @@ mongoose.connect(DataBaseAuth, {useNewUrlParser: true, useUnifiedTopology: true}
 }).catch((err)=>console.error(err));
 
 
+const io = require('socket.io')(server, {
+    cors: {
+        origin: "*",
+        methods: ["GET", "POST"]
+    }
+});
+
+var count=0;
+var id=0;
+io.on('connection', socket => {
+    if(count==0){
+        id=socket.id;
+    }
+    count++;
+    socket.on('data', ({ lang, code, input }) => {
+        compile(lang, code, input, socket);
+    })
+
+    socket.on('connected',(data)=>{
+        console.log(data);
+        /*console.log(id);*/
+        if(data!=id){
+        io.to(id).emit('calluser',data);
+        }
+    })
+
+    socket.on("disconnect", () => {
+		socket.broadcast.emit("callEnded")
+	});
+
 
