@@ -162,11 +162,14 @@ const Auth = ()=>{
             </Grid>
           </Grid>
           <Button
-            type="submit"
+         //   type="submit"
             fullWidth
             variant="contained"
             color="primary"
             className={classes.submit}
+            onClick={()=>{
+              History.push('/login')
+            }}
           >
             Sign Up
           </Button>

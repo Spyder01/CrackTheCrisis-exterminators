@@ -84,10 +84,13 @@ const Login = ()=>{
               autoComplete="current-password"
             />
             <Button
-              type="submit"
+             // type="submit"
               fullWidth
               variant="contained"
               color="primary"
+              onClick={()=>{
+                History.push('./register')
+              }}
               className={classes.submit}
             >
               Sign In

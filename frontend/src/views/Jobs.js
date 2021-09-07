@@ -9,6 +9,7 @@ import './styles/Jobs.css';
 const useStyles = makeStyles((theme)=>({
     root: {
         width: "80vw",
+        color: "#fff",
         display: "flex",
         flexDirection : "column",
         textAlign: "left",
