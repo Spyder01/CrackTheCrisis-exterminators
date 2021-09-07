@@ -59,3 +59,21 @@
   color: white;
   padding: 10px 0 0 10px;
 }
+
+#language {
+  display: block;
+  position: absolute;
+  width: 70px;
+  height: 35px;
+  top: 0;
+  right: calc(19px);
+  background-color: green;
+  color: white;
+  z-index: 100;
+  font-size: 12px;
+  padding: 10px;
+  box-sizing: border-box;
+  box-shadow: 2px 2px 15px black;
+  cursor: pointer;
+  transition: all 0.3s linear;
+}

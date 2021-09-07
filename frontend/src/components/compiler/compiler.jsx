@@ -1,8 +1,7 @@
 import React,{useState} from 'react'
 import './compiler.css';
 
-function Compiler() {
-
+function Compiler(props) {
     const[code,setCode]=useState(`/******************************************************************************
 
     Welcome to Online compiler.
@@ -11,14 +10,30 @@ function Compiler() {
     Code, Compile, Run and Debug online from anywhere in world.
     
     *******************************************************************************/`);
+    const[output,setOutput]=useState('');
+    const[input,setInput]=useState('');
+    const[language,setLanguage]=useState('C');
     const updateCode=(e)=>{
         setCode(e.target.value);
-        console.log(e);
     }
-    const click=(e)=>{
-        console.log(e.target.parentElement.childNodes[0].value);
-        
+
+    const updateinput=(e)=>{
+        setInput(e.target.value);
     }
+
+    const senddata=(e)=>{
+        setOutput('');
+        const lang=language;
+        console.log(language);
+        const code=e.target.parentElement.childNodes[0].value;
+        const input=e.target.parentElement.childNodes[1].value;
+        props.sock.emit('data',{lang,code,input});
+        props.sock.on('data',data=>{
+            setOutput(data);
+        })
+    }
+
+    
 
     return (
         <>
@@ -30,9 +45,14 @@ function Compiler() {
         Code, Compile, Run and Debug online from anywhere in world.
         
         *******************************************************************************/</textarea>
-        <textarea id='compiler__input' className='compiler__input' placeholder="Input" onChange={updateCode} ></textarea>
-        <textarea id='compiler__output' className='compiler__output' placeholder="Output"></textarea>
-        <button onClick={(e)=>click(e)} className='run'>▷ Run</button>
+        <textarea id='compiler__input' className='compiler__input' placeholder="Input" onChange={(e)=>updateinput(e)} ></textarea>
+        <textarea id='compiler__output' className='compiler__output' placeholder="Output" value={output}></textarea>
+        <button onClick={(e)=>senddata(e)} className='run'>▷ Run</button>
+        <select val={language} onChange={(e)=>{setLanguage(e.target.value)}} id='language'>
+            <option val="C">C</option>
+            <option val="Cpp">Cpp</option>
+            <option val="Java">Java</option>
+        </select>
         </>
     )
 }

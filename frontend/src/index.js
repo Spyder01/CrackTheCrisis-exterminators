@@ -6,11 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import {ContextProvider} from '../src/components/Socketconext/Socketconext';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ContextProvider>
-    <App />
-    </ContextProvider>
-  </React.StrictMode>,
+    <App />,
   document.getElementById('root')
 );
 
